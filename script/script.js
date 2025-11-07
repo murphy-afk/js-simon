@@ -7,4 +7,13 @@
 
 // NOTA: non è importante l'ordine con cui l'utente inserisce i numeri,
 //  basta che ne indovini il più possibile.
+const numbers = [];
+
+while (numbers.length < 5) {
+  const num = Math.floor(Math.random() * 10) + 1;
+  if (numbers.includes(num) === false) numbers.push(num); 
+}
+console.log(numbers);
+
+
 
