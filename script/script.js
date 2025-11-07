@@ -11,6 +11,8 @@ const num3 = document.querySelector(".third");
 const num4 = document.querySelector(".fourth");
 const num5 = document.querySelector(".fifth");
 const form = document.querySelector("form");
+const showNumsElem = document.querySelector(".numbers");
+const countdownElem = document.querySelector(".countdown");
 
 // DEBUG 
 const userNumbers = [3, 4, 5, 6, 7];
@@ -38,6 +40,19 @@ const check = (refNums, inputNums) => {
 }
 
 const numbers = genRandomNums();
+showNumsElem.innerHTML = numbers;
+
+let count = 5;
+const intervalId = setInterval( () => {
+  if (count === 0) {
+    showNumsElem.innerHTML = "Scrivi i numeri che ricordi";
+    countdownElem.innerHTML = "";
+    clearInterval(intervalId);
+  } else {
+    countdownElem.innerHTML = count;
+  }
+  count--;
+}, 1000);
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
