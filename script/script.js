@@ -44,6 +44,21 @@ const check = (refNums, inputNums) => {
   return `Hai indovinato ${guessCounter} Numeri (${guessed})`;
 }
 
+const filterNumbers = (numbers) => {
+  
+  const filteredNumbers = [];
+  for (let i = 0; i < numbers.length; i++) {
+    if (filteredNumbers.indexOf(numbers[i]) === -1) {
+      filteredNumbers.push(numbers[i]);
+    }
+  }
+  return filteredNumbers;
+}
+// const ex = [1, 1, 2, 3, 4, 4, 4, 6, 7];
+// console.log(filterNumbers(ex));
+
+
+
 const numbers = genRandomNums();
 showNumsElem.innerHTML = numbers;
 
@@ -69,9 +84,9 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const guesses = [];
   guesses.push(parseInt(num1.value), parseInt(num2.value), parseInt(num3.value), parseInt(num4.value), parseInt(num5.value));
-
-  console.log(numbers, guesses, check(numbers, guesses));
-  resultElem.innerHTML = check(numbers, guesses);
+  const filteredGuesses = filterNumbers(guesses);
+  // console.log(numbers, guesses, check(numbers, filteredGuesses));
+  resultElem.innerHTML = check(numbers, filteredGuesses);
   sent = !sent;
   if (sent) {
     submitBtnElem.classList.add("d-none");
