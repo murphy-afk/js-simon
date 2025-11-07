@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
-  <h1>Game</h1>
-  <h2>Memorizza i seguenti numeri:</h2>
-  <p class="countdown"></p>
-  <p class="numbers"></p>
+
+<body class="container p-3">
+  <h1 class="title text-center p-4">Memory Game</h1>
+  <h2 class="game-instructions fs-4 py-3">Memorizza i seguenti numeri:</h2>
+  <div class="p-3 border row justify-content-center box">
+    <p class="numbers fs-5 fw-bold col-9"></p>
+    <p class="countdown col-3 text-center fs-2 fw-bold"></p>
+  </div>
 
 
-<form action="submit">
-  <input type="number" class="first" name="first">
-  <input type="number" class="second" name="second">
-  <input type="number" class="third" name="third">
-  <input type="number" class="fourth" name="fourth">
-  <input type="number" class="fifth" name="fifth">
-  <button>click</button>
-</form>
+  <form action="submit" class="d-none">
+    <div class="row row-cols-5 column-gap-2 flex-nowrap">
+      <input type="number" class="first col" name="first">
+      <input type="number" class="second col" name="second">
+      <input type="number" class="third col" name="third">
+      <input type="number" class="fourth col" name="fourth">
+      <input type="number" class="fifth col" name="fifth">
+    </div>
+    <div class="row">
+      <button class="btn col-12 my-3 border submit-btn">Confronta</button>
+    </div>
+  </form>
+  <p class="result text-center py-5"></p>
+  <div class="row">
+  <a href="javascript: location.reload();" class="text-center btn retry d-none border">Prova di nuovo</a>
+  </div>
+  <!-- <button class="retry d-none">Try Again</button> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
   <script src="script/script.js"></script>
 </body>
+
 </html>

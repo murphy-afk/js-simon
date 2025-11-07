@@ -13,6 +13,11 @@ const num5 = document.querySelector(".fifth");
 const form = document.querySelector("form");
 const showNumsElem = document.querySelector(".numbers");
 const countdownElem = document.querySelector(".countdown");
+const resultElem = document.querySelector(".result");
+const gameInstructions = document.querySelector(".game-instructions");
+const boxElem = document.querySelector(".box");
+const submitBtnElem = document.querySelector(".submit-btn");
+const retryBtnElem = document.querySelector(".retry");
 
 // DEBUG 
 const userNumbers = [3, 4, 5, 6, 7];
@@ -42,26 +47,37 @@ const check = (refNums, inputNums) => {
 const numbers = genRandomNums();
 showNumsElem.innerHTML = numbers;
 
-let count = 5;
+let count = 3;
+let countdownEnd = false;
 const intervalId = setInterval( () => {
   if (count === 0) {
-    showNumsElem.innerHTML = "Scrivi i numeri che ricordi";
-    countdownElem.innerHTML = "";
+    boxElem.classList.add("d-none");
+    // showNumsElem.innerHTML = "";
+    gameInstructions.innerHTML = "Scrivi i numeri che ricordi";
+    // countdownElem.innerHTML = "";
+    countdownEnd = true;
     clearInterval(intervalId);
   } else {
     countdownElem.innerHTML = count;
   }
+  if (countdownEnd) form.classList.remove("d-none");
   count--;
 }, 1000);
 
+let sent = false;
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const guesses = [];
   guesses.push(parseInt(num1.value), parseInt(num2.value), parseInt(num3.value), parseInt(num4.value), parseInt(num5.value));
 
   console.log(numbers, guesses, check(numbers, guesses));
+  resultElem.innerHTML = check(numbers, guesses);
+  sent = !sent;
+  if (sent) {
+    submitBtnElem.classList.add("d-none");
+    retryBtnElem.classList.remove("d-none");
+  }
 });
-
 
 
 
