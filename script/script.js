@@ -18,18 +18,22 @@ while (numbers.length < 5) {
 console.log(`numeri random: ${numbers}`, `numeri user: ${userNumbers}`);
 
 
-for (let i = 0; i < userNumbers.length; i++) {
+let guessed = "";
+let guessCounter = 0;
+for (let i = 0; i < 5; i++) {
   if (numbers.includes(userNumbers[i])) {
-    const guessed = userNumbers[i];
-    console.log(`numero indovinato: ${userNumbers[i]}`);
-    if (numbers[i] === guessed) {
-      console.log("posizione giusta");
-    }
-    else {
-      console.log("posizone sbagliata");
-    }
+    guessed += userNumbers[i] + " ";
+    guessCounter++;
+// EXTRA 
+    // if (numbers[i] === guessed) {
+    //   console.log(`${userNumbers[i]} Giusto posizione giusta`);
+    // }
+    // else {
+    //   console.log(`${userNumbers[i]} Giusto posizione sbagliata`);
+    // }
   }
 }
+console.log(`Hai indovinato ${guessCounter} Numeri ( ${guessed})`);
 
 
 
