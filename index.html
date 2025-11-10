@@ -12,15 +12,18 @@
 
 <body class="container p-3">
   <h1 class="title text-center p-4">Memory Game</h1>
-  <h2 class="game-instructions fs-4 py-3">Memorizza i seguenti numeri:</h2>
-  <div class="p-3 border row justify-content-center box">
+  <div class="d-flex justify-content-center">
+  <button class="start btn btn-primary">START</button>
+</div>
+  <h2 class="game-instructions fs-4 py-3 text-center">Memorizza i seguenti numeri:</h2>
+  <div class="p-3 border row justify-content-center box d-none">
     <p class="numbers fs-5 fw-bold col-9"></p>
     <p class="countdown col-3 text-center fs-2 fw-bold"></p>
   </div>
 
 
-  <form action="submit" class="d-none">
-    <div class="row row-cols-5 column-gap-2 flex-nowrap">
+  <form action="submit" class="d-none" >
+    <div class="row row-cols-5 column-gap-2 flex-nowrap guess-form">
       <input type="number" class="first col" name="first">
       <input type="number" class="second col" name="second">
       <input type="number" class="third col" name="third">

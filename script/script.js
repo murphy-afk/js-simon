@@ -5,11 +5,8 @@
 //  il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 // NOTA: non è importante l'ordine con cui l'utente inserisce i numeri,
 //  basta che ne indovini il più possibile.
-const num1 = document.querySelector(".first");
-const num2 = document.querySelector(".second");
-const num3 = document.querySelector(".third");
-const num4 = document.querySelector(".fourth");
-const num5 = document.querySelector(".fifth");
+
+const numberImputs = document.querySelectorAll('.guess-form input[type="number"]');
 const form = document.querySelector("form");
 const showNumsElem = document.querySelector(".numbers");
 const countdownElem = document.querySelector(".countdown");
@@ -18,9 +15,7 @@ const gameInstructions = document.querySelector(".game-instructions");
 const boxElem = document.querySelector(".box");
 const submitBtnElem = document.querySelector(".submit-btn");
 const retryBtnElem = document.querySelector(".retry");
-
-// DEBUG 
-const userNumbers = [3, 4, 5, 6, 7];
+const startBtn = document.querySelector(".start");
 
 const genRandomNums = () => {
   const nums = [];
@@ -30,22 +25,18 @@ const genRandomNums = () => {
   }
   return nums
 }
-// console.log(`numeri random: ${numbers}`, `numeri user: ${userNumbers}`);
 
 const check = (refNums, inputNums) => {
   let guessed = [];
-  let guessCounter = 0;
   for (let i = 0; i < 5; i++) {
     if (refNums.includes(inputNums[i])) {
       guessed.push(inputNums[i]);
-      guessCounter++;
     }
   }
-  return `Hai indovinato ${guessCounter} Numeri (${guessed})`;
+  return `Hai indovinato ${guessed.length} Numeri (${guessed})`;
 }
 
 const filterNumbers = (numbers) => {
-  
   const filteredNumbers = [];
   for (let i = 0; i < numbers.length; i++) {
     if (filteredNumbers.indexOf(numbers[i]) === -1) {
@@ -54,22 +45,18 @@ const filterNumbers = (numbers) => {
   }
   return filteredNumbers;
 }
-// const ex = [1, 1, 2, 3, 4, 4, 4, 6, 7];
-// console.log(filterNumbers(ex));
-
-
 
 const numbers = genRandomNums();
 showNumsElem.innerHTML = numbers;
 
+startBtn.addEventListener("click", () =>{
+boxElem.classList.remove("d-none");
 let count = 3;
 let countdownEnd = false;
 const intervalId = setInterval( () => {
   if (count === 0) {
     boxElem.classList.add("d-none");
-    // showNumsElem.innerHTML = "";
     gameInstructions.innerHTML = "Scrivi i numeri che ricordi";
-    // countdownElem.innerHTML = "";
     countdownEnd = true;
     clearInterval(intervalId);
   } else {
@@ -78,14 +65,16 @@ const intervalId = setInterval( () => {
   if (countdownEnd) form.classList.remove("d-none");
   count--;
 }, 1000);
+});
 
 let sent = false;
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const guesses = [];
-  guesses.push(parseInt(num1.value), parseInt(num2.value), parseInt(num3.value), parseInt(num4.value), parseInt(num5.value));
+  for (let i = 0; i < numberImputs.length; i++) {
+    guesses.push(parseInt(numberImputs[i].value));
+  }
   const filteredGuesses = filterNumbers(guesses);
-  // console.log(numbers, guesses, check(numbers, filteredGuesses));
   resultElem.innerHTML = check(numbers, filteredGuesses);
   sent = !sent;
   if (sent) {
